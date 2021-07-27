@@ -113,19 +113,9 @@
     // ゲームオーバーフラグ
     let over = false;
 
-    // 消したライン数
-    let lines = 0;
-
-    // スコア
-    let score = 0;
-
     tetro_t = Math.floor( Math.random()*(TETRO_TYPES.length-1) )+1;
     tetro = TETRO_TYPES[ tetro_t ];
     
-    // ゲームフィールドの位置
-    const OFFSET_X = 40; //(640-300)/2;
-    const OFFSET_Y = 20;
-
     init();
     drawAll();
 
@@ -143,28 +133,8 @@
           field[y][x] =0;
         }
       }
-
-      // 最初のテトロのためネクスト入れる
-      tetro_n = Math.floor( Math.random()*(TETRO_TYPES.length-1) )+1;
-
-
-      setTetro();
-      drawAll();
       // テスト
       // field[5][8] =1;
-    }
-
-    // テトロをネクストで初期化
-    function setTetro()
-    {
-      // ネクストを現在のテトロにする
-      tetro_t = tetro_n;
-      tetro = TETRO_TYPES[ tetro_t ];
-      tetro_n = Math.floor( Math.random()*(TETRO_TYPES.length-1) )+1;
-
-      // 位置を初期値にする
-      tetro_x = START_X;
-      tetro_y = START_Y;
     }
 
     // ブロック一つを描画
@@ -218,33 +188,7 @@
         con.fillStyle= "white";
         con.fillText(s,x,y);
       }
-
-      // drawInfo();
     }
-
-    // インフォメーション表示
-    function drawInfo()
-      {
-        let w;
-        con.fillStyle="white";
-
-        let.s="NEXT";
-        con.fillText(s,410,120);
-
-        s="SCORE";
-        con.fillText(s,410,300);
-        s=""+score;
-        w = con.fillText(s,560-w,340);
-
-        s="LINES";
-        w = con.measureText(s).width;
-        con.fillText(s,410,400);
-        s=""+lines;
-        w = con.measureText(s).width;
-        con.fillText(s,560-w,440);
-
-      }
-
 
     // ブロック衝突判定
     function checkMove( mx,my,ntetro )
